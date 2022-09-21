@@ -1,0 +1,37 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { Icon } from "astro-icon"
+---
+
+<Layout title="Billy Hawkes">
+    <main class="w-full">
+        <div class="h-[100vh] flex justify-center items-center">
+            <div class="flex justify-center flex-col items-center">
+                <h1 class="font-header text-5xl sm:text-6xl md:text-7xl">
+                    Billy Hawkes
+                </h1>
+                <hr class="w-20 h-1 rounded bg-white mt-6 mb-8" />
+                <div class="flex justify-center items-center">
+                    <a
+                        href="https://github.com/billyhawkes"
+                        target="_blank"
+                        class="w-8 h-8 mr-8 flex justify-center items-center"
+                        ><Icon pack="fa" name="github" />
+                    </a>
+                    <a
+                        href="mailto:billyhawkes02@gmail.com"
+                        target="_blank"
+                        class="w-8 h-8 mr-8 flex justify-center items-center"
+                        ><Icon pack="fa" name="envelope" />
+                    </a>
+                    <a
+                        href="https://www.linkedin.com/in/billy-hawkes/"
+                        target="_blank"
+                        class="w-8 h-8 flex justify-center items-center"
+                        ><Icon pack="fa" name="linkedin" />
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+</Layout>
