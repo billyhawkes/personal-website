@@ -10,11 +10,17 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.2",
-    "@astrojs/tailwind": "^5.0.3",
-    "astro": "^4.0.4",
-    "astro-icon": "^0.8.2",
+    "@astrojs/check": "^0.5.2",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/ts-plugin": "^1.5.0",
+    "astro": "^4.3.5",
+    "astro-icon": "1.1.0",
     "tailwindcss": "^3.3.6",
     "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi": "^1.1.64",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0"
   }
 }
