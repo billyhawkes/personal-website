@@ -101,9 +101,9 @@ export interface Media {
 export interface Project {
   id: number;
   title: string;
-  category: 'notion' | 'software' | 'game';
-  image: number | Media;
   description: string;
+  image: number | Media;
+  category: 'notion' | 'software' | 'game';
   links?:
     | {
         type: 'github' | 'site' | 'notion' | 'itch';
@@ -214,9 +214,9 @@ export interface MediaSelect<T extends boolean = true> {
  */
 export interface ProjectsSelect<T extends boolean = true> {
   title?: T;
-  category?: T;
-  image?: T;
   description?: T;
+  image?: T;
+  category?: T;
   links?:
     | T
     | {

@@ -14,6 +14,19 @@ export const Projects: CollectionConfig = {
 			required: true,
 		},
 		{
+			name: "description",
+			label: "Description",
+			type: "textarea",
+			required: true,
+		},
+		{
+			name: "image",
+			label: "Image",
+			type: "relationship",
+			relationTo: "media",
+			required: true,
+		},
+		{
 			name: "category",
 			label: "Category",
 			type: "select",
@@ -31,19 +44,6 @@ export const Projects: CollectionConfig = {
 					value: "game",
 				},
 			],
-			required: true,
-		},
-		{
-			name: "image",
-			label: "Image",
-			type: "relationship",
-			relationTo: "media",
-			required: true,
-		},
-		{
-			name: "description",
-			label: "Description",
-			type: "textarea",
 			required: true,
 		},
 		{
