@@ -1,26 +1,57 @@
 {
-  "name": "site",
+  "name": "billyhawkes",
+  "version": "1.0.0",
+  "description": "A blank template to get started with Payload 3.0",
+  "license": "MIT",
   "type": "module",
-  "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro check && astro build",
-    "preview": "astro preview",
-    "astro": "astro"
+    "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
+    "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "devsafe": "rm -rf .next && cross-env NODE_OPTIONS=--no-deprecation next dev",
+    "generate:importmap": "cross-env NODE_OPTIONS=--no-deprecation payload generate:importmap",
+    "generate:types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types",
+    "lint": "cross-env NODE_OPTIONS=--no-deprecation next lint",
+    "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
+    "start": "cross-env NODE_OPTIONS=--no-deprecation next start"
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.2",
-    "@astrojs/tailwind": "^5.1.0",
-    "@astrojs/ts-plugin": "^1.5.0",
-    "astro": "^4.3.5",
-    "astro-icon": "1.1.0",
-    "tailwindcss": "^3.3.6",
-    "typescript": "^5.3.3"
+    "@payloadcms/db-sqlite": "^3.0.0-beta.77",
+    "@payloadcms/db-vercel-postgres": "beta",
+    "@payloadcms/next": "beta",
+    "@payloadcms/payload-cloud": "beta",
+    "@payloadcms/richtext-lexical": "beta",
+    "@tailwindcss/line-clamp": "^0.4.4",
+    "cross-env": "^7.0.3",
+    "graphql": "^16.8.1",
+    "lucide-react": "^0.454.0",
+    "next": "15.0.0",
+    "payload": "beta",
+    "react": "19.0.0-rc-65a56d0e-20241020",
+    "react-dom": "19.0.0-rc-65a56d0e-20241020",
+    "sharp": "0.32.6"
   },
   "devDependencies": {
-    "@iconify-json/mdi": "^1.1.64",
-    "prettier": "^3.2.5",
-    "prettier-plugin-astro": "^0.13.0"
+    "@types/node": "^22.5.4",
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1",
+    "autoprefixer": "^10.4.20",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.14",
+    "typescript": "5.6.3"
+  },
+  "engines": {
+    "node": "^18.20.2 || >=20.9.0"
+  },
+  "pnpm": {
+    "overrides": {
+      "@types/react": "npm:types-react@19.0.0-rc.1",
+      "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
+    }
+  },
+  "overrides": {
+    "@types/react": "npm:types-react@19.0.0-rc.1",
+    "@types/react-dom": "npm:types-react-dom@19.0.0-rc.1"
   }
 }
