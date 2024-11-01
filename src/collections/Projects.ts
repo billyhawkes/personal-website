@@ -1,10 +1,19 @@
 import { links } from "@/lib/links";
+import { revalidatePath } from "next/cache";
 import type { CollectionConfig } from "payload";
 
 export const Projects: CollectionConfig = {
 	slug: "projects",
 	admin: {
 		useAsTitle: "title",
+	},
+	hooks: {
+		afterChange: [
+			async ({ doc }) => {
+				revalidatePath("/");
+				revalidatePath(`/projects/${doc.id}`);
+			},
+		],
 	},
 	fields: [
 		{
