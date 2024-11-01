@@ -8,7 +8,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = seo({
-	title: "Home ",
+	title: "Home",
 	description: "Billy Hawkes' personal website",
 	keywords: "portfolio, projects, software, games, notion templates",
 });
@@ -30,7 +30,7 @@ const Page = async () => {
 
 	return (
 		<>
-			<h1 className="text-5xl sm:text-8xl font-medium">Billy Hawkes</h1>
+			<h1 className="text-5xl sm:text-8xl">Billy Hawkes</h1>
 			<div className="h-1 rounded w-20 bg-white"></div>
 			<div className="flex gap-4">
 				<Link href={`${process.env.PUBLIC_GITHUB}`} target="_blank">
