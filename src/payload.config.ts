@@ -15,8 +15,6 @@ import { Users } from "./collections/Users";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
-console.log("dirname", dirname);
-
 export default buildConfig({
 	admin: {
 		user: Users.slug,
@@ -26,7 +24,7 @@ export default buildConfig({
 		components: {
 			graphics: {
 				Icon: {
-					path: "/components/Logo.tsx#Logo",
+					path: "/components/Logo.tsx#Icon",
 				},
 				Logo: {
 					path: "/components/Logo.tsx#Logo",
