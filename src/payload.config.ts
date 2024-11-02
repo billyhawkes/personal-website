@@ -7,6 +7,7 @@ import sharp from "sharp";
 import { fileURLToPath } from "url";
 
 import { s3Storage } from "@payloadcms/storage-s3";
+import { Config } from "./collections/Config";
 import { Media } from "./collections/Media";
 import { Projects } from "./collections/Projects";
 import { Users } from "./collections/Users";
@@ -14,14 +15,27 @@ import { Users } from "./collections/Users";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
+console.log("dirname", dirname);
+
 export default buildConfig({
 	admin: {
 		user: Users.slug,
 		importMap: {
 			baseDir: path.resolve(dirname),
 		},
+		components: {
+			graphics: {
+				Icon: {
+					path: "/components/Logo.tsx#Logo",
+				},
+				Logo: {
+					path: "/components/Logo.tsx#Logo",
+				},
+			},
+		},
 	},
 	collections: [Users, Media, Projects],
+	globals: [Config],
 	editor: lexicalEditor(),
 	secret: process.env.PAYLOAD_SECRET || "",
 	typescript: {

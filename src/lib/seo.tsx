@@ -1,6 +1,7 @@
 import { Media } from "@/payload-types";
+import { getPayload } from "./payload";
 
-export const seo = ({
+export const seo = async ({
 	title,
 	description,
 	keywords,
@@ -17,7 +18,13 @@ export const seo = ({
 	createdAt?: string;
 	updatedAt?: string;
 }) => {
-	const fullTitle = `${title} | Billy Hawkes`;
+	const payload = await getPayload();
+	const config = await payload.findGlobal({
+		slug: "config",
+	});
+	const favicon = config.favicon as Media | undefined;
+
+	const fullTitle = `${title} | ${config.title}`;
 	const canonical = `https://billyhawkes.com${path}`;
 
 	return {
@@ -38,18 +45,28 @@ export const seo = ({
 			modifiedTime: updatedAt,
 			//   authors: ["https://dminhvu.com/about"],
 			//   tags: categories,
-			images: [image],
+			images: [image, favicon],
 		},
 		twitter: {
 			card: "summary_large_image",
 			site: "Billy Hawkes",
 			creator: "Billy Hawkes",
-			title: `${title} | Billy Hawkes`,
+			title: fullTitle,
 			description,
-			images: [image],
+			images: [image, favicon],
 		},
 		alternates: {
 			canonical,
 		},
+		icons: [
+			...(favicon
+				? [
+						{
+							rel: "icon",
+							url: favicon.url,
+						},
+					]
+				: []),
+		],
 	};
 };
