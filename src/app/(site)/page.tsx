@@ -50,7 +50,7 @@ const Page = async () => {
 					return 0;
 				})
 				.map(([category, projects]) => (
-					<>
+					<div key={category} className="flex flex-col gap-4">
 						<h3 className="text-lg font-extralight tracking-widest">
 							{category.toUpperCase()}
 						</h3>
@@ -97,7 +97,7 @@ const Page = async () => {
 								</div>
 							))}
 						</div>
-					</>
+					</div>
 				))}
 		</>
 	);

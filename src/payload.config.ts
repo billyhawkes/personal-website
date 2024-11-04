@@ -1,11 +1,12 @@
 // storage-adapter-import-placeholder
 import { sqliteAdapter } from "@payloadcms/db-sqlite";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { BlocksFeature, lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
 import sharp from "sharp";
 import { fileURLToPath } from "url";
 
+import { ThreeColumnBlock } from "@/blocks/ThreeColumn";
 import { s3Storage } from "@payloadcms/storage-s3";
 import { Config } from "./collections/Config";
 import { Media } from "./collections/Media";
@@ -31,10 +32,41 @@ export default buildConfig({
 				},
 			},
 		},
+		livePreview: {
+			url: "http://localhost:3000",
+			collections: ["projects"],
+			breakpoints: [
+				{
+					label: "Mobile",
+					name: "mobile",
+					width: 375,
+					height: 667,
+				},
+				{
+					label: "Tablet",
+					name: "tablet",
+					width: 768,
+					height: 1024,
+				},
+				{
+					label: "Desktop",
+					name: "desktop",
+					width: 1440,
+					height: 900,
+				},
+			],
+		},
 	},
 	collections: [Users, Media, Projects],
 	globals: [Config],
-	editor: lexicalEditor(),
+	editor: lexicalEditor({
+		features: ({ defaultFeatures }) => [
+			...defaultFeatures,
+			BlocksFeature({
+				blocks: [ThreeColumnBlock],
+			}),
+		],
+	}),
 	secret: process.env.PAYLOAD_SECRET || "",
 	typescript: {
 		outputFile: path.resolve(dirname, "payload-types.ts"),

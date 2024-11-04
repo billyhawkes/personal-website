@@ -6,15 +6,28 @@ export const Projects: CollectionConfig = {
 	slug: "projects",
 	admin: {
 		useAsTitle: "title",
+		livePreview: {
+			url: ({ data }) => `http://localhost:3000/projects/${data.id}`,
+		},
+	},
+	versions: {
+		drafts: {
+			autosave: {
+				interval: 375,
+			},
+		},
 	},
 	hooks: {
 		afterChange: [
 			async ({ doc }) => {
-				revalidatePath("/");
-				revalidatePath(`/projects/${doc.id}`);
+				if (doc._status === "published") {
+					revalidatePath("/");
+					revalidatePath(`/projects/${doc.id}`);
+				}
 			},
 		],
 	},
+
 	fields: [
 		{
 			name: "title",

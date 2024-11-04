@@ -1,11 +1,14 @@
-import { linkIcons } from "@/lib/icons";
-import { links } from "@/lib/links";
 import { getPayload } from "@/lib/payload";
 import { seo } from "@/lib/seo";
 import { Media } from "@/payload-types";
+import { notFound } from "next/navigation";
+import { cache } from "react";
+
+import { linkIcons } from "@/lib/icons";
+import { links } from "@/lib/links";
+import { RefreshRouteOnSave } from "@/lib/RefreshRouteOnSave";
 import Image from "next/image";
 import Link from "next/link";
-import { cache } from "react";
 
 const getProject = cache(async (id: string) => {
 	const payload = await getPayload();
@@ -13,6 +16,7 @@ const getProject = cache(async (id: string) => {
 	const project = await payload.findByID({
 		collection: "projects",
 		id,
+		draft: process.env.NODE_ENV === "development",
 	});
 
 	return project;
@@ -45,11 +49,17 @@ export const generateMetadata = async ({ params }: { params: Promise<{ id: strin
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 	const id = (await params).id;
+
+	if (!id) {
+		return notFound();
+	}
+
 	const project = await getProject(id);
 
 	return (
 		<>
-			{typeof project.image !== "number" && project.image.url ? (
+			<RefreshRouteOnSave />
+			{project.image && typeof project.image !== "number" && project.image.url ? (
 				<Image
 					src={project.image.url}
 					width={150}

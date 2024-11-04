@@ -1,7 +1,7 @@
 import configPromise from "@payload-config";
-import { getPayload as gPL } from "payload";
+import { getPayloadHMR } from "@payloadcms/next/utilities";
 
 export const getPayload = async () =>
-	await gPL({
+	await getPayloadHMR({
 		config: configPromise,
 	});

@@ -19,6 +19,7 @@
 		"@aws-sdk/lib-storage": "^3.685.0",
 		"@payloadcms/db-sqlite": "beta",
 		"@payloadcms/db-vercel-postgres": "beta",
+		"@payloadcms/live-preview-react": "beta",
 		"@payloadcms/next": "beta",
 		"@payloadcms/payload-cloud": "beta",
 		"@payloadcms/plugin-seo": "beta",
