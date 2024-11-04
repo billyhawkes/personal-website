@@ -7,7 +7,7 @@ export const Projects: CollectionConfig = {
 	admin: {
 		useAsTitle: "title",
 		livePreview: {
-			url: ({ data }) => `http://localhost:3000/projects/${data.id}`,
+			url: ({ data }) => `${process.env.NEXT_PUBLIC_SITE_URL}/projects/${data.id}`,
 		},
 	},
 	versions: {
