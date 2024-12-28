@@ -1,0 +1,27 @@
+---
+const { title = "Billy Hawkes" } = Astro.props;
+import "../global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="min-h-screen bg-zinc-900 text-white p-4 sm:p-8">
+		<header class="max-w-screen-md mx-auto flex justify-between items-center">
+			<a href="/" class="h2">Billy Hawkes</a>
+			<!-- <nav class="flex gap-4">
+				<a href="/projects" class="tracking-widest">PROJECTS</a>
+				<a href="/docs" class="tracking-widest">DOCS</a>
+			</nav> -->
+		</header>
+		<main class="max-w-screen-md mx-auto py-20">
+			<slot />
+		</main>
+	</body>
+</html>

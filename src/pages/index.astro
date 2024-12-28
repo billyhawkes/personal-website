@@ -1,0 +1,57 @@
+---
+import { getCollection } from "astro:content";
+import { Code, FileText, Gamepad, Hammer } from "lucide-astro";
+import Layout from "../layouts/Layout.astro";
+const docs = await getCollection("docs");
+const projects = await getCollection("projects");
+---
+
+<Layout>
+	<div class="flex flex-col gap-3">
+		<div>
+			<h3>Projects</h3>
+			<p class="text-zinc-300">What I've built.</p>
+		</div>
+		{
+			projects
+				.sort((a, b) => {
+					const categories = ["Software", "Games", "Notion"];
+					return (
+						categories.indexOf(a.data.category) - categories.indexOf(b.data.category)
+					);
+				})
+				.map((project) => (
+					<a
+						href={`/projects/${project.id}`}
+						class="flex sm:items-center border border-zinc-800 p-4 sm:flex-row flex-col"
+					>
+						<div class="sm:mr-4 mb-2 sm:mb-0">
+							{project.data.category === "Software" ? (
+								<Code />
+							) : project.data.category === "Games" ? (
+								<Gamepad />
+							) : (
+								<Hammer />
+							)}
+						</div>
+						<div class="flex flex-col flex-1">
+							<p>{project.data.title}</p>
+							<p class="text-zinc-300">{project.data.description}</p>
+						</div>
+					</a>
+				))
+		}
+		<div class="mt-3">
+			<h3>Docs</h3>
+			<p class="text-zinc-300">Collection of useful guides, tutorials, and code samples.</p>
+		</div>
+		{
+			docs.map((doc) => (
+				<a href={`/docs/${doc.id}`} class="flex items-center border border-zinc-800 p-4">
+					<FileText class="mr-4" />
+					<p>{doc.data.title}</p>
+				</a>
+			))
+		}
+	</div>
+</Layout>
