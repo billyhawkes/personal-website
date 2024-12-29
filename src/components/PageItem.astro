@@ -1,0 +1,46 @@
+---
+import { Code, FileText, Gamepad, Hammer, ListChecks } from "lucide-astro";
+import Tag from "./Tag.astro";
+
+interface Props {
+	href: string;
+	icon: string;
+	title: string;
+	description?: string;
+	tags?: string[];
+}
+
+const { href, icon, title, description, tags } = Astro.props;
+---
+
+<a
+	href={href}
+	class="flex sm:items-center border border-zinc-800 p-4 sm:flex-row flex-col not-prose"
+>
+	<div class="sm:mr-4 mb-2 sm:mb-0">
+		{
+			{
+				Software: <Code />,
+				Games: <Gamepad />,
+				Notion: <Hammer />,
+				Docs: <FileText />,
+				Guides: <ListChecks />,
+			}[icon]
+		}
+	</div>
+	<div class="flex flex-col flex-1">
+		<div class="flex flex-col gap-2 flex-wrap justify-between sm:flex-row">
+			<p class="font-medium">{title}</p>
+			{
+				tags && (
+					<div class="flex gap-2 flex-wrap">
+						{tags.map((tag) => (
+							<Tag text={tag} />
+						))}
+					</div>
+				)
+			}
+		</div>
+		{description && <p class="text-zinc-300">{description}</p>}
+	</div>
+</a>

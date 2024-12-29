@@ -15,29 +15,27 @@ const { Content } = await render(project);
 ---
 
 <Layout title={project.data.title}>
-	<div class="flex flex-col gap-2">
-		<h1>{project.data.title}</h1>
-		<p class="text-zinc-300">{project.data.description}</p>
-		<div class="flex gap-2">
-			<a
-				href={project.data.site}
-				target="_blank"
-				class="border border-zinc-800 px-4 h-10 flex items-center"
-			>
-				View Site
-			</a>
-			{
-				project.data.github && (
-					<a
-						href={project.data.github}
-						target="_blank"
-						class="border border-zinc-800 px-4 h-10 flex items-center"
-					>
-						View Github
-					</a>
-				)
-			}
-		</div>
+	<h1>{project.data.title}</h1>
+	<p class="text-zinc-300">{project.data.description}</p>
+	<div class="flex gap-2 not-prose">
+		<a
+			href={project.data.site}
+			target="_blank"
+			class="border border-zinc-800 px-4 h-10 flex items-center"
+		>
+			View Site
+		</a>
+		{
+			project.data.github && (
+				<a
+					href={project.data.github}
+					target="_blank"
+					class="border border-zinc-800 px-4 h-10 flex items-center"
+				>
+					View Github
+				</a>
+			)
+		}
 	</div>
 	<div class="my-8"></div>
 	<Content />

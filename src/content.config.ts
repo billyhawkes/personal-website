@@ -1,10 +1,11 @@
 import { glob } from "astro/loaders";
-import { defineCollection, z } from "astro:content";
+import { defineCollection, reference, z } from "astro:content";
 
 const docs = defineCollection({
 	loader: glob({ pattern: "**/*.md", base: "./src/docs" }),
 	schema: z.object({
 		title: z.string(),
+		guides: z.array(reference("guides")),
 	}),
 });
 
@@ -19,7 +20,17 @@ const projects = defineCollection({
 	}),
 });
 
+const guides = defineCollection({
+	loader: glob({ pattern: "**/*.md", base: "./src/guides" }),
+	schema: z.object({
+		title: z.string(),
+		stack: z.enum(["Tanstack Start", "SST", "AWS", "AWS ElastiCache"]).array(),
+		docs: z.array(reference("docs")),
+	}),
+});
+
 export const collections = {
 	docs,
 	projects,
+	guides,
 };

@@ -1,6 +1,10 @@
 ---
 const { title = "Billy Hawkes" } = Astro.props;
+import "@fontsource-variable/josefin-sans";
+import "@fontsource-variable/open-sans";
+import { Github, Linkedin, Twitter } from "lucide-astro";
 import "../global.css";
+import socials from "../socials.json";
 ---
 
 <!doctype html>
@@ -14,13 +18,20 @@ import "../global.css";
 	</head>
 	<body class="min-h-screen bg-zinc-900 text-white p-4 sm:p-8">
 		<header class="max-w-screen-md mx-auto flex justify-between items-center">
-			<a href="/" class="h2">Billy Hawkes</a>
+			<a href="/" class="text-2xl font-bold tracking-widest"><h1>Billy Hawkes</h1></a>
 			<!-- <nav class="flex gap-4">
 				<a href="/projects" class="tracking-widest">PROJECTS</a>
 				<a href="/docs" class="tracking-widest">DOCS</a>
 			</nav> -->
+			<div class="flex flex-row gap-2">
+				<a href={socials.github} target="_blank"><Github class="w-8 h-8" /></a>
+				<a href={socials.linkedin} target="_blank"><Linkedin class="w-8 h-8" /></a>
+				<a href={socials.twitter} target="_blank"><Twitter class="w-8 h-8" /></a>
+			</div>
 		</header>
-		<main class="max-w-screen-md mx-auto py-20">
+		<main
+			class="max-w-screen-md mx-auto py-20 prose-invert prose lg:prose-lg prose-zinc prose-h1:border-b prose-h2:border-b prose-h1:border-zinc-800 prose-h2:border-zinc-800 prose-h1:pb-2 prose-h2:pb-2 prose-h1:mb-2 prose-h2:mb-2"
+		>
 			<slot />
 		</main>
 	</body>

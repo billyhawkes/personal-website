@@ -1,6 +1,6 @@
 ---
 import { getCollection, render } from "astro:content";
-import DocsLayout from "../../layouts/DocsLayout.astro";
+import PageItem from "../../components/PageItem.astro";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
@@ -13,11 +13,21 @@ export async function getStaticPaths() {
 
 const { doc } = Astro.props;
 const { Content } = await render(doc);
+
+const guides = await getCollection("guides", (guide) =>
+	guide.data.docs.some(({ id }) => id === doc.id)
+);
 ---
 
 <Layout title={doc.data.title}>
-	<DocsLayout>
-		<h1>{doc.data.title}</h1>
-		<Content />
-	</DocsLayout>
+	<h1>{doc.data.title}</h1>
+	<Content />
+	<h2>Guides</h2>
+	<div class="flex flex-col gap-2">
+		{
+			guides.map((guide) => (
+				<PageItem href={`/guides/${guide.id}`} icon="Guides" title={guide.data.title} />
+			))
+		}
+	</div>
 </Layout>

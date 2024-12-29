@@ -3,26 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+	* {
+		font-family: "Open Sans Variable", sans-serif;
+		@apply text-white;
+	}
 	h1,
-	.h1 {
-		@apply scroll-m-20 text-4xl font-extrabold;
-	}
 	h2,
-	.h2 {
-		@apply scroll-m-20 text-3xl font-semibold;
-	}
-	h3,
-	.h3 {
-		@apply scroll-m-20 text-2xl font-semibold;
-	}
-	h4,
-	.h4 {
-		@apply scroll-m-20 text-xl font-semibold;
-	}
-	p {
-		@apply leading-7;
-	}
-	ul {
-		@apply list-disc list-inside;
+	h3 {
+		font-family: "Josefin Sans Variable", sans-serif;
 	}
 }
