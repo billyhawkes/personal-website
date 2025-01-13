@@ -11,13 +11,15 @@ const docs = defineCollection({
 
 const projects = defineCollection({
 	loader: glob({ pattern: "**/*.md", base: "./src/projects" }),
-	schema: z.object({
-		title: z.string(),
-		description: z.string(),
-		category: z.enum(["Software", "Games", "Notion"]),
-		site: z.string(),
-		github: z.string().optional(),
-	}),
+	schema: ({ image }) =>
+		z.object({
+			title: z.string(),
+			description: z.string(),
+			category: z.enum(["Software", "Games", "Notion"]),
+			site: z.string(),
+			github: z.string().optional(),
+			cover: image().optional(),
+		}),
 });
 
 const guides = defineCollection({

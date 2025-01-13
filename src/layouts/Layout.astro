@@ -2,7 +2,9 @@
 const { title = "Billy Hawkes" } = Astro.props;
 import "@fontsource-variable/josefin-sans";
 import "@fontsource-variable/open-sans";
+import { Image } from "astro:assets";
 import { Github, Linkedin, Twitter } from "lucide-astro";
+import logo from "../assets/logo.png";
 import "../global.css";
 import socials from "../socials.json";
 ---
@@ -12,13 +14,21 @@ import socials from "../socials.json";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/svg+xml" href={logo.src} />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
 	<body class="min-h-screen bg-zinc-900 text-white p-4 sm:p-8">
 		<header class="max-w-screen-md mx-auto flex justify-between items-center">
-			<a href="/" class="text-2xl font-bold tracking-widest"><h1>Billy Hawkes</h1></a>
+			<a href="/">
+				<Image
+					src={logo}
+					alt="Billy Hawkes"
+					width={logo.width}
+					height={logo.height}
+					class="w-12 h-12 border border-zinc-800 rounded-full"
+				/>
+			</a>
 			<!-- <nav class="flex gap-4">
 				<a href="/projects" class="tracking-widest">PROJECTS</a>
 				<a href="/docs" class="tracking-widest">DOCS</a>
@@ -30,7 +40,7 @@ import socials from "../socials.json";
 			</div>
 		</header>
 		<main
-			class="max-w-screen-md mx-auto py-20 prose-invert prose lg:prose-lg prose-zinc prose-h1:border-b prose-h2:border-b prose-h1:border-zinc-800 prose-h2:border-zinc-800 prose-h1:pb-2 prose-h2:pb-2 prose-h1:mb-2 prose-h2:mb-2"
+			class="max-w-screen-md mx-auto py-10 prose-invert prose lg:prose-lg prose-zinc prose-h1:border-b prose-h2:border-b prose-h1:border-zinc-800 prose-h2:border-zinc-800 prose-h1:pb-2 prose-h2:pb-2 prose-h1:mb-2 prose-h2:mb-2"
 		>
 			<slot />
 		</main>
