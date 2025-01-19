@@ -23,7 +23,7 @@ General rate limiting often implemented by a proxy server, WAF, and/or CDN. The 
 
 Rate limiting specific to an applications code. This is more flexible and allows for more control but is more difficult to setup and manage. It usually requires a redis database to store and retrieve rate limiting data.
 
-Some common use cases are limiting an API key or user based on usage and limitting expensive functions seperately.
+Some common use cases are limiting an API key or user based on usage and limiting expensive functions separately.
 
 > **Warning**: This method does not prevent ddos attacks as the function still has to run in order to block requests
 

@@ -10,9 +10,38 @@ export async function getStaticPaths() {
 		props: { project },
 	}));
 }
-
 const { project } = Astro.props;
 const { Content } = await render(project);
+
+const links: {
+	label: string;
+	href: string;
+}[] = [];
+if (project.data.site) {
+	links.push({
+		label: "View Site",
+		href: project.data.site,
+	});
+}
+if (project.data.github) {
+	links.push({
+		label: "Github",
+		href: project.data.github,
+	});
+}
+if (project.data.ios) {
+	links.push({
+		label: "App Store",
+		href: project.data.ios,
+	});
+}
+if (project.data.android) {
+	links.push({
+		label: "Google Play",
+		href: project.data.android,
+	});
+}
+
 ---
 
 <Layout title={project.data.title}>
@@ -23,31 +52,22 @@ const { Content } = await render(project);
 				alt={project.data.title}
 				width={project.data.cover.width}
 				height={project.data.cover.height}
-				class="rounded-lg border border-zinc-800"
+				class="border border-zinc-800"
 			/>
 		)
 	}
 	<h1>{project.data.title}</h1>
 	<p class="text-zinc-300">{project.data.description}</p>
 	<div class="flex gap-2 not-prose">
-		<a
-			href={project.data.site}
-			target="_blank"
-			class="border border-zinc-800 px-4 h-10 flex items-center"
-		>
-			View Site
-		</a>
-		{
-			project.data.github && (
-				<a
-					href={project.data.github}
-					target="_blank"
-					class="border border-zinc-800 px-4 h-10 flex items-center"
-				>
-					View Github
-				</a>
-			)
-		}
+		{links.map((link) => (
+			<a
+				href={link.href}
+				target="_blank"
+				class="border border-zinc-800 px-4 h-10 flex items-center"
+			>
+				{link.label}
+			</a>
+		))}
 	</div>
 	<div class="my-8"></div>
 	<Content />

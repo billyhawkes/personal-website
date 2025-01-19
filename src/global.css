@@ -12,4 +12,7 @@
 	h3 {
 		font-family: "Josefin Sans Variable", sans-serif;
 	}
+	img {
+		@apply rounded-lg;
+	}
 }
