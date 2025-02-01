@@ -3,7 +3,7 @@ const { title = "Billy Hawkes" } = Astro.props;
 import "@fontsource-variable/josefin-sans";
 import "@fontsource-variable/open-sans";
 import { Image } from "astro:assets";
-import { Github, Linkedin, Twitter } from "lucide-astro";
+import { Github, Linkedin } from "lucide-astro";
 import logo from "../assets/logo.png";
 import "../global.css";
 import socials from "../socials.json";
@@ -36,7 +36,6 @@ import socials from "../socials.json";
 			<div class="flex flex-row gap-2">
 				<a href={socials.github} target="_blank"><Github class="w-8 h-8" /></a>
 				<a href={socials.linkedin} target="_blank"><Linkedin class="w-8 h-8" /></a>
-				<a href={socials.twitter} target="_blank"><Twitter class="w-8 h-8" /></a>
 			</div>
 		</header>
 		<main
